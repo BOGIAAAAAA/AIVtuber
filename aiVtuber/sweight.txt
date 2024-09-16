@@ -1,0 +1,1 @@
+C:/Users/MINAMI/Desktop/aiVtuber/GPT-SoVITS/GPT_SoVITS/pretrained_models/s2G488k.pth
