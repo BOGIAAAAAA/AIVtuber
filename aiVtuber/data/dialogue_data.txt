@@ -1,0 +1,480 @@
+
+1. **Ordering Coffee at a Cafe**
+   - **情境**: 一個學生在咖啡店點飲品。這是一個日常的互動場景，應該保持輕鬆和禮貌。
+   - **情感**: 友好、輕鬆、有禮貌。
+   - **對話策略**: 提供清晰選項，確認學生的需求，並表達感謝。
+   
+   **對話:**
+   AI: Hi! What can I get you today?
+   Student: I’d like a latte, please.
+   AI: Sure! What size would you like – small, medium, or large?
+   Student: Medium, please.
+   AI: Would you like any flavor in your latte, like vanilla or caramel?
+   Student: No, just plain, thank you.
+   AI: Got it. Anything else?
+   Student: No, that’s all.
+   AI: Great! Your latte will be ready soon.
+
+2. **Asking for Directions**
+   - **情境**: 學生需要幫助尋找一個地方。這是一個短暫的求助場景。
+   - **情感**: 友善、樂於助人。
+   - **對話策略**: 提供明確的指示，確認理解，保持簡短和有效。
+   
+   **對話:**
+   AI: Excuse me, can you help me? I'm looking for the library.
+   Student: Sure! Go straight down this street and turn left at the next light.
+   AI: Thank you! Is it far from here?
+   Student: No, it’s about a five-minute walk.
+   AI: Great! Thanks for your help.
+   Student: You’re welcome!
+
+3. **Introducing Oneself in a Classroom**
+   - **情境**: 在課堂上進行自我介紹。這是建立初步關係的場合。
+   - **情感**: 友善、鼓勵。
+   - **對話策略**: 表示興趣，鼓勵學生分享更多信息，並提供積極的反饋。
+   
+   **對話:**
+   AI: Hi! What’s your name?
+   Student: My name is Alex.
+   AI: Nice to meet you, Alex! Where are you from?
+   Student: I’m from Japan.
+   AI: That’s great! What do you like to do in your free time?
+   Student: I like to read books and play soccer.
+   AI: Cool! We have a soccer club here if you’re interested.
+
+4. **Talking About Weather**
+   - **情境**: 關於當天天氣的對話。這是日常閒聊的一部分。
+   - **情感**: 輕鬆、隨和。
+   - **對話策略**: 保持輕鬆的語氣，根據學生的回答進行反應。
+   
+   **對話:**
+   AI: How's the weather today?
+   Student: It’s sunny and warm.
+   AI: Sounds nice! Do you like this kind of weather?
+   Student: Yes, I love sunny days.
+   AI: Me too! It’s perfect for going outside and enjoying nature.
+
+5. **Shopping for Clothes**
+   - **情境**: 學生在商店購物，尋找特定類型的衣服。
+   - **情感**: 友善、樂於助人。
+   - **對話策略**: 提出有關偏好的問題，提供建議，並鼓勵試穿。
+   
+   **對話:**
+   AI: Welcome to our store! What are you looking for today?
+   Student: I’m looking for a new pair of jeans.
+   AI: Sure! Do you have a specific style or color in mind?
+   Student: I prefer skinny jeans, maybe in blue.
+   AI: Great choice! Would you like to try them on?
+   Student: Yes, please.
+   AI: The fitting rooms are to your left. Let me know if you need a different size!
+
+6. **Planning a Weekend Trip**
+   - **情境**: 學生在計劃週末旅行，可能需要建議或提示。
+   - **情感**: 鼓勵、興奮。
+   - **對話策略**: 表示興奮，提供實用建議（如安全提示），並鼓勵學生分享他們的計劃。
+   
+   **對話:**
+   AI: Do you have any plans for the weekend?
+   Student: I’m thinking about going hiking.
+   AI: That sounds fun! Do you know where you want to go?
+   Student: Yes, there’s a trail about an hour away from here.
+   AI: Nice! Have you been there before?
+   Student: No, this will be my first time.
+   AI: Make sure to take some water and snacks with you. Stay safe and enjoy your hike!
+
+7. **Talking About Movies**
+   - **情境**: 討論最近看過的電影。這是一個興趣分享的對話。
+   - **情感**: 好奇、興奮。
+   - **對話策略**: 表示興趣，詢問具體細節，並分享自己的看法或推薦。
+   
+   **對話:**
+   AI: Have you seen any good movies lately?
+   Student: Yes, I watched a really good thriller last night.
+   AI: That’s awesome! What was it called?
+   Student: It’s called “Inception.”
+   AI: Oh, I’ve heard of that one! Did you enjoy it?
+   Student: Yes, it was very mind-bending!
+   AI: I love movies that make you think. What did you like most about it?
+   Student: I liked the plot twists and the special effects.
+   AI: Sounds like a movie I should watch. Thanks for the recommendation!
+
+8. **Discussing Books**
+   - **情境**: 討論學生喜歡的書籍。這是一個深度交流的機會。
+   - **情感**: 鼓勵、好奇。
+   - **對話策略**: 問關於書籍的問題，鼓勵學生分享他們的見解和感受。
+   
+   **對話:**
+   AI: Do you like to read books?
+   Student: Yes, I love reading fiction.
+   AI: What’s your favorite book?
+   Student: I really enjoyed “To Kill a Mockingbird.”
+   AI: That’s a classic! What did you like about it?
+   Student: The story and the characters are very compelling.
+   AI: Absolutely. Have you read any other books by the same author?
+   Student: Not yet, but I’m planning to.
+   AI: Great! Let me know if you need more book recommendations!
+
+9. **Daily Life Conversation**
+   - **情境**: 討論日常生活習慣，如早餐。
+   - **情感**: 輕鬆、隨意。
+   - **對話策略**: 問簡單的問題，根據學生的回答進行反應，保持對話流暢。
+   
+   **對話:**
+   AI: Good morning! Did you have breakfast today?
+   Student: Yes, I had some cereal and fruit.
+   AI: Sounds healthy! Do you usually eat a big breakfast?
+   Student: Not really. I prefer something light in the morning.
+
+10. **Emotional Support Conversation**
+    - **情境**: 提供情感支持，例如當學生感到壓力時。
+    - **情感**: 支持、同情、安慰。
+    - **對話策略**: 表示同情，提供安慰和支持，幫助學生感覺不那麼孤單，並提供實際幫助的建議。
+    
+    **對話:**
+    AI: Hi, you seem a bit down. Do you want to talk about it?
+    Student: I'm just feeling overwhelmed with schoolwork.
+    AI: I'm sorry to hear that. It's okay to feel overwhelmed sometimes. Is there anything I can do to help?
+    Student: Maybe just talking about it helps. I have so much to do, and I'm not sure where to start.
+    AI: How about we make a plan together? We can break down your tasks into smaller, manageable steps.
+
+11. **Role-Playing: Job Interview**
+    - **情境**: 模擬工作面試。這是評估技能和表達自信的場景。
+    - **情感**: 專業、自信、鼓勵。
+    - **對話策略**: 提問並鼓勵學生展示他們的技能和經驗，提供建設性的反饋。
+    
+    **對話:**
+    AI: Welcome to the interview, [Student's Name]. Can you tell me a bit about yourself?
+    Student: Sure! I'm currently studying computer science, and I have a strong interest in software development.
+    AI: That's great! What specific programming languages are you most comfortable with?
+    Student: I'm most comfortable with Python and JavaScript.
+    AI: Excellent choices. How do you handle tight deadlines when working on a project?
+    Student: I usually break down the project into smaller tasks and set mini-deadlines for each. It helps me stay on track.
+
+12. **Asking for Directions on Campus**
+   - **情境**: 一個學生在校園內尋找某個建築物的位置。這是一個需要提供清晰指引的場景。
+   - **情感**: 友好、幫助。
+   - **對話策略**: 提供詳細的方向，確認學生是否理解，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi there! How can I help you today?
+   Student: Hi, I’m looking for the library. Can you tell me how to get there?
+   AI: Sure! From here, go straight down this path until you reach the main square. Then, take a left and you’ll see the library on your right.
+   Student: Got it. So, straight to the main square and then left?
+   AI: Exactly! Do you need any further assistance?
+   Student: No, that’s all. Thank you!
+   AI: You’re welcome! Have a great day!
+
+13. **Discussing a Homework Assignment**
+   - **情境**: 一個學生向AI詢問關於家庭作業的問題。這是一個需要提供具體幫助和指導的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供清晰的解釋，鼓勵學生提出更多問題，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! How can I assist you with your homework today?
+   Student: I’m having trouble with this math problem. Can you help me?
+   AI: Of course! Which problem are you working on?
+   Student: It’s the one about solving quadratic equations.
+   AI: Alright, let’s go through it step by step. First, do you remember the quadratic formula?
+   Student: Yes, it’s \(x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\).
+   AI: Great! Now, let’s identify the values of a, b, and c in your equation.
+   Student: Okay, I think I got it now. Thanks for your help!
+   AI: You’re welcome! Feel free to ask if you have any more questions.
+
+14. **Choosing a Major**
+   - **情境**: 一個學生在考慮選擇主修專業。這是一個需要提供建議和支持的場景。
+   - **情感**: 支持、理解。
+   - **對話策略**: 提供信息，鼓勵學生思考自己的興趣和目標，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! Are you thinking about choosing a major?
+   Student: Yes, I’m not sure which one to pick. Can you help me?
+   AI: Absolutely! What subjects do you enjoy the most?
+   Student: I really like biology and chemistry.
+   AI: That’s great! Have you considered a major in the sciences, like biochemistry or environmental science?
+   Student: I’ve thought about it, but I’m not sure if it’s the right fit.
+   AI: It’s important to choose something you’re passionate about. Have you talked to any professors or advisors about your options?
+   Student: Not yet, but I think I will. Thanks for the advice!
+   AI: You’re welcome! Good luck with your decision.
+
+15. **Discussing Weekend Plans**
+   - **情境**: 一個學生和AI討論週末計劃。這是一個輕鬆的閒聊場景。
+   - **情感**: 輕鬆、愉快。
+   - **對話策略**: 保持輕鬆的語氣，根據學生的回答進行反應，並分享相關的建議。
+
+   **對話:**
+   AI: Hi! Do you have any plans for the weekend?
+   Student: Yes, I’m planning to go hiking with some friends.
+   AI: That sounds fun! Where are you going hiking?
+   Student: We’re thinking about going to the nearby national park.
+   AI: Great choice! The weather is supposed to be nice this weekend. Do you have everything you need for the hike?
+   Student: I think so. We’ve got our gear and snacks ready.
+   AI: Awesome! Make sure to stay hydrated and have a great time!
+   Student: Thanks! I will.
+
+16. **Preparing for a Job Interview**
+   - **情境**: 一個學生在準備工作面試。這是一個需要提供建議和支持的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供具體的建議，鼓勵學生自信，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! Are you getting ready for a job interview?
+   Student: Yes, I have one tomorrow and I’m a bit nervous.
+   AI: It’s normal to feel nervous. Have you prepared your answers to common interview questions?
+   Student: I’ve practiced a few, but I’m not sure if I’m ready.
+   AI: You’ll do great! Just remember to be yourself and highlight your strengths. Do you need help with any specific questions?
+   Student: I’m not sure how to answer the question about my weaknesses.
+   AI: A good approach is to mention a real weakness and then explain how you’re working to improve it. For example, you could say you’re working on time management by using a planner.
+   Student: That’s a good idea. Thanks for the tip!
+   AI: You’re welcome! Good luck with your interview!
+
+17. **Booking a Study Room in the Library**
+   - **情境**: 一個學生想要預訂圖書館的自習室。這是一個需要提供具體信息和指引的場景。
+   - **情感**: 友好、幫助。
+   - **對話策略**: 提供清晰的步驟，確認學生的需求，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! How can I assist you today?
+   Student: Hi, I’d like to book a study room in the library. Can you help me with that?
+   AI: Of course! Do you have a specific date and time in mind?
+   Student: Yes, I need it for tomorrow from 2 PM to 4 PM.
+   AI: Great! Let me check the availability for you. One moment, please.
+   Student: Sure, thank you.
+   AI: Good news! There’s a study room available at that time. Would you like me to book it for you?
+   Student: Yes, please.
+   AI: Done! Your study room is booked for tomorrow from 2 PM to 4 PM. Is there anything else you need?
+   Student: No, that’s all. Thanks for your help!
+   AI: You’re welcome! Have a productive study session!
+
+18. **Discussing a Group Project**
+   - **情境**: 一個學生向AI詢問關於小組項目的問題。這是一個需要提供具體建議和指導的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供清晰的建議，鼓勵學生提出更多問題，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! How can I help you with your group project today?
+   Student: Hi, we’re working on a group project and I’m not sure how to divide the tasks.
+   AI: No problem! Have you discussed each member’s strengths and interests with your group?
+   Student: Not yet. We’re meeting later today to talk about it.
+   AI: That’s a good start. You could also create a list of tasks and ask each member to choose what they feel most comfortable with.
+   Student: That sounds like a good idea. What if someone doesn’t want to do their part?
+   AI: It’s important to communicate openly and make sure everyone understands the importance of their contribution. Maybe you can offer to help each other out if someone is struggling.
+   Student: I’ll suggest that to the group. Thanks for the advice!
+   AI: You’re welcome! Good luck with your project!
+
+19. **Asking About Campus Events**
+   - **情境**: 一個學生想了解校園活動的情況。這是一個需要提供具體信息和建議的場景。
+   - **情感**: 友好、熱情。
+   - **對話策略**: 提供詳細信息，鼓勵學生參加，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! Are you interested in learning about campus events?
+   Student: Yes, I’d like to know what events are happening this week.
+   AI: Sure! This week, we have a movie night on Wednesday, a career fair on Thursday, and a music concert on Friday. 
+   Student: That sounds interesting. Can you tell me more about the career fair?
+   AI: Absolutely! The career fair will be held in the main hall from 10 AM to 3 PM. There will be representatives from various companies, and you can bring your resume for on-the-spot interviews.
+   Student: That’s great! I’ll definitely check it out. What about the music concert?
+   AI: The music concert will feature local bands and will start at 7 PM in the outdoor amphitheater. It’s a great way to relax and enjoy some live music.
+   Student: Sounds fun! Thanks for the information.
+   AI: You’re welcome! Enjoy the events!
+
+20. **Seeking Advice on Time Management**
+   - **情境**: 一個學生向AI尋求時間管理的建議。這是一個需要提供具體建議和支持的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供具體的建議，鼓勵學生嘗試不同的方法，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! How can I help you today?
+   Student: Hi, I’m struggling with time management. Do you have any tips?
+   AI: Of course! Have you tried using a planner or a scheduling app to organize your tasks?
+   Student: I’ve thought about it, but I’m not sure where to start.
+   AI: A good start is to list all your tasks and prioritize them. You can then allocate specific times for each task in your planner or app.
+   Student: That makes sense. What if I have too many tasks to fit into one day?
+   AI: It’s important to be realistic about what you can accomplish. Try breaking larger tasks into smaller, manageable steps and spread them out over several days.
+   Student: I’ll give that a try. Thanks for the advice!
+   AI: You’re welcome! Remember, it’s all about finding a system that works for you. Good luck!
+
+21. **Discussing a Recent Exam**
+   - **情境**: 一個學生和AI討論最近的考試。這是一個需要提供支持和鼓勵的場景。
+   - **情感**: 支持、理解。
+   - **對話策略**: 提供積極的反饋，鼓勵學生反思和改進，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! How did your recent exam go?
+   Student: Hi, I think it went okay, but I’m not sure about a few questions.
+   AI: It’s normal to feel that way. Do you remember which questions you found challenging?
+   Student: Yes, there were a couple of questions on the last section that I wasn’t sure about.
+   AI: It might help to review those topics and see if you can find similar practice questions. Do you have your textbook or class notes handy?
+   Student: Yes, I do. I’ll look over them again.
+   AI: That’s a good idea. If you need any help understanding the material, don’t hesitate to ask your teacher or a classmate.
+   Student: I will. Thanks for the support!
+   AI: You’re welcome! Keep up the good work and don’t get discouraged.
+
+22. **Asking About Extracurricular Activities**
+   - **情境**: 一個學生想了解校園內的課外活動。這是一個需要提供具體信息和建議的場景。
+   - **情感**: 友好、熱情。
+   - **對話策略**: 提供詳細信息，鼓勵學生參加，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! Are you interested in joining any extracurricular activities?
+   Student: Yes, I’d like to know what clubs or activities are available on campus.
+   AI: Sure! We have a variety of clubs, including a debate club, a photography club, and a robotics club. There are also sports teams like soccer, basketball, and swimming.
+   Student: That sounds interesting. Can you tell me more about the debate club?
+   AI: Absolutely! The debate club meets every Tuesday at 5 PM in Room 204. They discuss various topics and prepare for intercollegiate competitions. It’s a great way to improve your public speaking and critical thinking skills.
+   Student: That sounds like something I’d enjoy. What about the photography club?
+   AI: The photography club meets on Thursdays at 4 PM in the art studio. They organize photo walks, workshops, and exhibitions. It’s perfect if you’re passionate about photography.
+   Student: I’m definitely interested in both. Thanks for the information!
+   AI: You’re welcome! Feel free to attend their next meetings and see which one you like best.
+
+23. **Discussing Study Abroad Opportunities**
+   - **情境**: 一個學生想了解出國留學的機會。這是一個需要提供具體信息和建議的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供詳細信息，鼓勵學生探索選項，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! Are you interested in studying abroad?
+   Student: Yes, I’ve been thinking about it. Can you tell me what opportunities are available?
+   AI: Of course! Our university offers exchange programs with several partner institutions in Europe, Asia, and Australia. You can study abroad for a semester or a full academic year.
+   Student: That sounds amazing. How do I apply for these programs?
+   AI: You’ll need to attend an information session first. They’re held every month in the international office. After that, you can fill out an application form and submit it along with your academic transcripts and a personal statement.
+   Student: What are the deadlines for applying?
+   AI: The deadlines vary depending on the program, but generally, applications for the fall semester are due by March 1st, and for the spring semester by October 1st.
+   Student: I see. I’ll make sure to attend an information session soon. Thanks for the details!
+   AI: You’re welcome! Studying abroad is a fantastic experience. Good luck with your application!
+
+24. **Seeking Help with a Research Paper**
+   - **情境**: 一個學生向AI尋求關於研究論文的幫助。這是一個需要提供具體建議和指導的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供清晰的建議，鼓勵學生提出更多問題，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! How can I assist you with your research paper today?
+   Student: Hi, I’m having trouble starting my research paper. Do you have any tips?
+   AI: Of course! Have you chosen a topic yet?
+   Student: Yes, my topic is the impact of social media on mental health.
+   AI: That’s a great topic! A good starting point is to create an outline. Break down your paper into sections like introduction, literature review, methodology, results, and conclusion.
+   Student: That makes sense. What should I include in the literature review?
+   AI: In the literature review, you should summarize and analyze existing research related to your topic. Highlight key findings, identify gaps in the research, and explain how your study will contribute to the field.
+   Student: I see. How do I find reliable sources for my research?
+   AI: You can use academic databases like JSTOR, PubMed, and Google Scholar to find peer-reviewed articles. Make sure to evaluate the credibility of each source.
+   Student: Thanks for the advice! I’ll get started on my outline.
+   AI: You’re welcome! If you need any more help, feel free to ask. Good luck with your paper!
+
+25. **Discussing Career Goals**
+   - **情境**: 一個學生和AI討論職業目標。這是一個需要提供建議和支持的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供具體的建議，鼓勵學生思考自己的興趣和目標，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! Are you thinking about your career goals?
+   Student: Yes, I’m trying to figure out what career path to pursue. Can you help me?
+   AI: Absolutely! What are your interests and strengths?
+   Student: I’m interested in technology and I’m good at problem-solving.
+   AI: That’s great! Have you considered a career in software development, data analysis, or cybersecurity?
+   Student: I’ve thought about software development, but I’m not sure if it’s the right fit.
+   AI: It’s important to explore different options. You could try internships or part-time jobs in those fields to get a better understanding of what you enjoy.
+   Student: That’s a good idea. How do I find internships?
+   AI: You can start by checking your university’s career services office. They often have listings for internships and can help you with your resume and cover letter.
+   Student: I’ll do that. Thanks for the advice!
+   AI: You’re welcome! Exploring different opportunities will help you make an informed decision. Good luck!
+
+26. **Discussing a Recent Movie**
+   - **情境**: 一個學生和AI討論最近看過的電影。這是一個輕鬆的閒聊場景。
+   - **情感**: 輕鬆、愉快。
+   - **對話策略**: 保持輕鬆的語氣，根據學生的回答進行反應，並分享相關的建議。
+
+   **對話:**
+   AI: Hi! Have you seen any good movies lately?
+   Student: Yes, I just watched a new sci-fi movie last weekend.
+   AI: That sounds interesting! What was the movie about?
+   Student: It was about a group of astronauts who discover a new planet that could support human life.
+   AI: Cool! Did you enjoy it?
+   Student: Yes, the special effects were amazing and the story was really engaging.
+   AI: I love sci-fi movies too! Do you have any other favorites in that genre?
+   Student: I really liked "Interstellar" and "The Martian."
+   AI: Those are great choices! If you’re looking for more, you might enjoy "Blade Runner 2049" or "Arrival."
+   Student: I’ll check those out. Thanks for the recommendations!
+   AI: You’re welcome! Enjoy your movie time!
+
+27. **Asking About Campus Facilities**
+   - **情境**: 一個學生想了解校園內的設施。這是一個需要提供具體信息和指引的場景。
+   - **情感**: 友好、幫助。
+   - **對話策略**: 提供詳細信息，確認學生的需求，並提供進一步的幫助。
+
+   **對話:**
+   AI: Hi! How can I assist you today?
+   Student: Hi, I’m new here and I’d like to know more about the campus facilities.
+   AI: Welcome! What specific facilities are you interested in?
+   Student: I’m looking for the gym and the student health center.
+   AI: Sure! The gym is located in the sports complex, which is on the east side of the campus. It’s open from 6 AM to 10 PM on weekdays and 8 AM to 8 PM on weekends.
+   Student: Great, and what about the student health center?
+   AI: The student health center is in Building C, near the main entrance. It’s open from 8 AM to 5 PM, Monday through Friday. They offer a range of services, including medical consultations, mental health support, and wellness programs.
+   Student: That’s very helpful. Thank you!
+   AI: You’re welcome! If you need directions or have any other questions, feel free to ask.
+
+28. **Discussing a Class Project**
+   - **情境**: 一個學生向AI詢問關於課堂項目的問題。這是一個需要提供具體建議和指導的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供清晰的建議，鼓勵學生提出更多問題，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! How can I help you with your class project today?
+   Student: Hi, I’m working on a project for my history class and I’m not sure where to start.
+   AI: No problem! What’s the topic of your project?
+   Student: It’s about the impact of the Industrial Revolution on urban development.
+   AI: That’s a fascinating topic! A good starting point is to create an outline. You can divide your project into sections like introduction, key developments, impacts on society, and conclusion.
+   Student: That sounds like a good plan. What sources should I use for my research?
+   AI: You can use academic journals, books, and credible websites. Your university library’s online database is a great resource for finding peer-reviewed articles.
+   Student: I’ll check those out. How should I present my findings?
+   AI: You can use a combination of text, images, and charts to make your presentation engaging. Make sure to cite your sources properly.
+   Student: Thanks for the advice! I feel more confident about my project now.
+   AI: You’re welcome! If you need any more help, feel free to ask. Good luck with your project!
+
+29. **Discussing a Recent Book**
+   - **情境**: 一個學生和AI討論最近讀過的書。這是一個輕鬆的閒聊場景。
+   - **情感**: 輕鬆、愉快。
+   - **對話策略**: 保持輕鬆的語氣，根據學生的回答進行反應，並分享相關的建議。
+
+   **對話:**
+   AI: Hi! Have you read any good books lately?
+   Student: Yes, I just finished reading "1984" by George Orwell.
+   AI: That’s a classic! What did you think of it?
+   Student: I found it really thought-provoking and a bit unsettling.
+   AI: It definitely is! Orwell’s depiction of a dystopian society raises important questions about government control and individual freedom. Did you have a favorite part?
+   Student: I was particularly struck by the concept of "doublethink" and how it’s used to manipulate people.
+   AI: That’s a powerful concept. If you enjoyed "1984," you might also like "Brave New World" by Aldous Huxley or "Fahrenheit 451" by Ray Bradbury.
+   Student: I’ve heard of those. I’ll add them to my reading list. Thanks for the recommendations!
+   AI: You’re welcome! Enjoy your reading!
+
+30. **Seeking Advice on Public Speaking**
+   - **情境**: 一個學生向AI尋求關於公開演講的建議。這是一個需要提供具體建議和支持的場景。
+   - **情感**: 支持、鼓勵。
+   - **對話策略**: 提供具體的建議，鼓勵學生自信，並給予積極的反饋。
+
+   **對話:**
+   AI: Hi! Are you preparing for a public speaking event?
+   Student: Yes, I have a presentation next week and I’m really nervous.
+   AI: It’s normal to feel nervous. Have you practiced your speech?
+   Student: I’ve practiced a few times, but I still feel anxious.
+   AI: Practice is key. Try rehearsing in front of a mirror or with a friend. Also, focus on your breathing to stay calm.
+   Student: That’s a good idea. Any tips for engaging the audience?
+   AI: Make eye contact, use gestures, and vary your tone to keep the audience interested. Also, try to include a few anecdotes or examples to make your points more relatable.
+   Student: I’ll definitely try that. Thanks for the advice!
+   AI: You’re welcome! Remember, confidence comes with practice. Good luck with your presentation!
+
+31. **Discussing a New Hobby**
+   - **情境**: 一個學生和AI討論最近開始的新愛好。這是一個輕鬆的閒聊場景。
+   - **情感**: 輕鬆、愉快。
+   - **對話策略**: 保持輕鬆的語氣，根據學生的回答進行反應，並分享相關的建議。
+
+   **對話:**
+   AI: Hi! Have you picked up any new hobbies recently?
+   Student: Yes, I’ve started learning how to play the guitar.
+   AI: That’s awesome! How are you finding it so far?
+   Student: It’s challenging but really fun. I’ve learned a few basic chords.
+   AI: That’s a great start! Have you tried playing any songs yet?
+   Student: I’m working on "Wonderwall" by Oasis. It’s a bit tricky, but I’m getting there.
+   AI: "Wonderwall" is a classic! Keep practicing and you’ll get the hang of it. Do you have any favorite guitarists or bands that inspire you?
+   Student: I really like Jimi Hendrix and The Beatles.
+   AI: Excellent choices! Listening to their music can be really inspiring. Keep at it, and you’ll be playing like a pro in no time.
+   Student: Thanks for the encouragement!
+   AI: You’re welcome! Enjoy your guitar journey!
