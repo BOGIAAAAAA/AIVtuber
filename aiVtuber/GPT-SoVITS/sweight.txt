@@ -1,0 +1,1 @@
+SoVITS_weights/firefly_e8_s200.pth
