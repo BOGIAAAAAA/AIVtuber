@@ -1,0 +1,13 @@
+# 語音聊天（預設模式 / --api）執行期相依套件。Python 3.9+
+#   pip install -r requirements.txt
+# PyAudio 需要系統的 PortAudio：macOS 先 `brew install portaudio`，Debian/Ubuntu 先 `apt install portaudio19-dev`；
+# Windows 直接 pip 安裝即可（有預編譯 wheel）。
+# 訓練 / 生成 / 情緒分類另需 requirements-train.txt。
+
+groq>=0.31.0             # AsyncGroq；0.31 起支援 gpt-oss 的 reasoning_effort（low/medium/high）與 include_reasoning
+httpx>=0.24              # GPT-SoVITS HTTP 客戶端（groq SDK 本身也依賴 httpx）
+PyYAML>=6.0              # config.yaml
+python-dotenv>=1.0       # 選用：從 aiVtuber/.env 讀 GROQ_API_KEY
+SpeechRecognition>=3.10  # 麥克風錄音 + Google 語音辨識
+PyAudio>=0.2.11          # 麥克風與播放
+pyvts>=0.3.3             # VTube Studio API（--api / --vts_control）；0.3.3 起可指定 host

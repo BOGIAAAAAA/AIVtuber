@@ -1,0 +1,16 @@
+# --train / --generate / --classify 用的相依套件（可單獨安裝在訓練機上）。
+#   pip install -r requirements-train.txt
+# torch 請依平台安裝合適的版本（CUDA / CPU / Apple Silicon），見 https://pytorch.org/get-started/locally/
+# 搭配 --api 切換 VTube Studio 表情時，另需 requirements.txt 裡的 pyvts。
+
+torch>=2.1
+transformers>=4.41       # 4.41 起有 eval_strategy（舊名 evaluation_strategy 已在 4.51 移除）
+datasets>=2.15           # Dataset.from_dict / train_test_split（取代 pandas + scikit-learn）
+accelerate>=0.26         # Trainer 需要
+matplotlib>=3.5          # 訓練曲線存成 PNG（Agg backend）
+
+# --generate 會同時呼叫 Groq；所有模式都會讀 config.yaml
+groq>=0.31.0
+httpx>=0.24
+PyYAML>=6.0
+python-dotenv>=1.0

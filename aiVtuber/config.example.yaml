@@ -1,0 +1,188 @@
+# AI VTuber 設定範例
+#
+# 使用方式：複製成 aiVtuber/config.yaml 再修改（config.yaml 已被 .gitignore 忽略）。
+#   cp config.example.yaml config.yaml
+# 沒有 config.yaml 時程式會使用與本檔相同的預設值；只需寫出想改的項目即可。
+# 也可以用 `python -m vtuber --config 其他檔案.yaml` 指定別的設定檔。
+#
+# 路徑規則：本檔中「本機」的相對路徑（data_dir、model_save_path、output_dir、token_path）
+# 一律以 aiVtuber/ 目錄為基準，不論從哪個目錄執行都一樣。
+# 模型欄位（training.base_model、sentiment.model）可填 Hugging Face 模型 ID 或本機路徑：
+# 以 ./ 或 ../ 開頭、絕對路徑，或 aiVtuber/ 底下確實存在的路徑視為本機路徑（同樣以 aiVtuber/ 為基準），其餘視為模型 ID。
+# tts.ref_audio_path 是要送給 TTS server 讀取的路徑：相對路徑同樣以 aiVtuber/ 為基準，轉成絕對路徑後送出；
+# 絕對路徑原樣送出（TTS server 在別台電腦時，請填那台電腦上的絕對路徑）。
+#
+# API key 不寫在這裡：請設定環境變數 GROQ_API_KEY（或寫在 aiVtuber/.env）。
+
+# 推論與訓練裝置（--generate / --classify / --train）：auto 依序選 cuda > mps > cpu；
+# 也可指定 cpu / cuda / mps，指定的裝置不存在時會直接報錯（結束碼 2），不會默默改用其他裝置
+device: auto
+
+llm:
+  # Groq 模型 ID。舊版的 llama3-8b-8192 已於 2025-08-30 下架；官方建議的後繼 llama-3.1-8b-instant
+  # 也已於 2026-08-16 對 free / developer 方案下架，官方建議改用 openai/gpt-oss-20b。
+  # 現行模型清單：https://console.groq.com/docs/models
+  model: openai/gpt-oss-20b
+  temperature: 0.5
+  # 回覆的最大 token 數（送出時對應 Groq API 的 max_completion_tokens；推理模型的推理 token 也算在內）
+  max_tokens: 1024
+  # 推理強度，只有推理模型支援：gpt-oss 系列用 low / medium / high，qwen3 系列用 none（不推理）/ default。
+  # 預設 low：推理越少，第一句越快出來（語音聊天在乎的是開口的速度）。null 表示不送、使用模型預設值。
+  reasoning_effort: low
+  # 要不要 API 傳回推理內容。推理內容本來就不會念出來，所以預設 false（gpt-oss 不設定時會傳回）；null 表示不送。
+  # 換模型時這兩個參數這樣設：
+  #   - gpt-oss 系列：reasoning_effort: low（或 medium / high），include_reasoning: false
+  #   - qwen3 系列：reasoning_effort: none 或 default，include_reasoning: false
+  #   - 非推理模型（例如 llama 系列）：兩個都設 null。這些模型不支援推理參數，送了 API 可能回 400，AI 就只會念 fallback_message
+  include_reasoning: false
+  # 單次請求逾時（秒）
+  timeout: 30
+  # 連線錯誤、逾時、429、5xx 時的重試次數（SDK 預設 2）。最壞情況一句回覆要等約
+  # (max_retries + 1) × timeout 秒，再加上每次重試前的等待（依伺服器的 Retry-After，最多 60 秒）；
+  # 預設值下最壞約 2 × 30 + 60 = 120 秒。想更快放棄改用備援訊息就設 0。
+  max_retries: 1
+  # Groq 失敗或沒有 API key 時要念出來的話；語言要和 tts.text_lang 一致
+  fallback_message: "Sorry, I can't generate a reply right now."
+
+tts:
+  # TTS 引擎：
+  #   gpt-sovits-v2：GPT-SoVITS 的 api_v2.py（預設）。安裝與啟動見 tts_server/README.md
+  #   gpt-sovits-v1：舊版 GPT-SoVITS 的 api.py（POST 到根路徑）
+  engine: gpt-sovits-v2
+  # TTS server 的位址。預設主程式和 server 在同一台電腦；server 在別台電腦時改成那台的 IP
+  # （例如 http://192.168.1.106:9880），並讓 server 以 TTS_HOST=0.0.0.0 啟動（見 tts_server/README.md）
+  url: http://127.0.0.1:9880
+  # 參考音檔（3–10 秒、只有一個人說話），決定角色的音色。由 server 讀取：
+  # - 相對路徑以 aiVtuber/ 為基準，轉成這台電腦上的絕對路徑後送出（server 在同一台電腦時用這種寫法）
+  # - 絕對路徑原樣送出：server 在別台電腦時，請填「那台電腦上」的絕對路徑（Windows 也可寫成 D:/voices/ref.wav）
+  # server 在同一台電腦而這個檔案不存在時，啟動時會發出警告。
+  # gpt-sovits-v2 一定要填；gpt-sovits-v1 留空字串則改用 server 以 -dr / -dt / -dl 指定的預設參考音檔
+  ref_audio_path: voices/firefly/ref_firefly_01.wav
+  # 參考音檔裡說的話（要逐字相符）與它的語言
+  prompt_text: "I understand. Article 4 of Glamoth military regulations."
+  prompt_lang: en
+  # 要合成的文字的語言。語言代碼一律小寫：
+  #   gpt-sovits-v2：auto / auto_yue / en / zh / ja / yue / ko / all_zh / all_ja / all_yue / all_ko
+  #                  （server 載入的是 v1 模型時只支援 auto / en / zh / ja / all_zh / all_ja）
+  #   gpt-sovits-v1：auto / en / zh / ja / all_zh / all_ja
+  text_lang: en
+
+  # ---- 以下只有 gpt-sovits-v2 使用 ----
+  # server 端的切句方式：cut0 不切、cut1 每四句合併、cut2 每 50 字、cut3 中文句號、cut4 英文句號、cut5 依標點。
+  # 主程式已經逐句送出，所以用 cut0：每句一次合成，語氣連貫。cut5 會在每個逗號再切開，
+  # 每段後面都補 fragment_interval 秒的靜音，句子中間會多出停頓
+  text_split_method: cut0
+  # 語速倍率（1.0 為原速；WebUI 的範圍是 0.6–1.65）
+  speed_factor: 1.0
+  # server 在每段音訊後面補的靜音秒數（最後一段也會補）。cut0 時每句只有一段，這就是句子之間的停頓
+  fragment_interval: 0.3
+  # 取樣參數，與 GPT-SoVITS WebUI 相同（top_k 1–100、top_p 0–1、temperature 0–1）
+  top_k: 15
+  top_p: 1.0
+  temperature: 1.0
+
+  # ---- 以下只有 gpt-sovits-v1 使用 ----
+  # api.py 的切句符號，例如 ".?!。？！"；null 表示不送，由 server 的 -cp 參數決定（預設不切）
+  cut_punc: null
+
+  # ---- 共用 ----
+  # 每一句的合成逾時（秒）；在 CPU 上合成可能需要數十秒
+  timeout: 120
+  # 聊天開始前先確認 server 已就緒（GET {url}/docs 回 200），最多等 ready_timeout 秒（server 載入模型需要幾十秒）。
+  # 等不到就結束程式並說明原因。設 false 則不等，但下面的暖機仍會連線：server 沒開時會在暖機失敗並結束。
+  # 只有 warmup_text 也設成空字串時，才會不檢查就開始聊天（server 沒開時每一句合成都會失敗並被跳過）
+  wait_for_server: true
+  ready_timeout: 60
+  # 就緒後先合成這句話暖機（不播放）：server 會先處理並快取參考音檔，第一句回覆就不必多等。
+  # 暖機失敗（例如參考音檔路徑錯誤）時結束程式並說明原因。語言要和 text_lang 一致；空字串表示不暖機
+  # （沒有開 TTS server、只想測試聊天時：wait_for_server: false 加上 warmup_text: ""）
+  warmup_text: "Hello, nice to meet you."
+
+audio:
+  # 播放裝置編號；null 為系統預設輸出。要把聲音送進虛擬音源線（例如給 VTube Studio 做口型）時再指定
+  output_device_index: null
+
+asr:
+  # 麥克風裝置編號；null 為系統預設。命令列 --device_index 會覆蓋這個值
+  device_index: null
+  # Google 語音辨識的語言代碼，例如 en-US、zh-TW、ja-JP
+  language: en-US
+  # 等待開口的秒數；逾時視為沒人說話，安靜地繼續聽（null 表示一直等）
+  timeout: 5
+  # 一句話最長錄幾秒（null 表示不限制）
+  phrase_time_limit: 5
+  # 啟動時校正環境噪音的秒數（只做一次）
+  ambient_noise_duration: 1.0
+  # 呼叫 Google 辨識服務的逾時秒數（null 表示無限等待）
+  request_timeout: 15
+
+chat:
+  # 說出這些字就結束聊天；比對時忽略大小寫與句尾標點（"Exit." 也算）
+  exit_commands: [exit]
+  # 回覆會按句切分、逐句合成，播放第一句的同時合成下一句（邊合成邊播放）。長度以字元計，中文一個字算一個字元。
+  # 比這短的句子（例如 "Hi!"、"Sure."）會和下一句合併再合成：GPT-SoVITS 合成很短的片段品質較差
+  min_sentence_chars: 12
+  # 一直沒有句尾標點時，超過這個長度就在逗號、分號或空白處切開，避免第一句等太久才開口。
+  # 中文或日文回覆可以調小一些，例如 min 6、max 60
+  max_sentence_chars: 120
+
+vts:
+  # VTube Studio API（VTS 設定裡要開啟「Start API」）
+  host: localhost
+  port: 8001
+  # 外掛名稱與開發者（各 3–32 字元）。第一次連線時 VTS 會跳出授權視窗，按「Allow」後 token 會存到 token_path，
+  # 之後重複使用不再詢問；改了名稱就需要重新授權一次。
+  plugin_name: AIVtuber
+  plugin_developer: AIVtuber
+  token_path: pyvts_token.txt
+  # --classify --api 時依情緒切換的表情；可寫表情名稱或完整檔名，沒寫副檔名會自動補上 .exp3.json
+  positive_expression: Happy
+  negative_expression: Sad
+  # 表情淡入秒數（VTS 會限制在 0–2 秒）
+  fade_time: 0.25
+
+sentiment:
+  # 情緒分類模型（Hugging Face 模型 ID 或本機路徑，路徑規則見檔案開頭）；
+  # 必須是已微調、標籤為 POSITIVE / NEGATIVE 的二元分類模型
+  model: distilbert/distilbert-base-uncased-finetuned-sst-2-english
+
+generation:
+  # --generate 時微調 GPT-2 的取樣參數
+  max_new_tokens: 150
+  temperature: 0.7
+  top_k: 50
+  top_p: 0.9
+  repetition_penalty: 1.2
+
+training:
+  # 要微調的基底模型（Hugging Face 模型 ID 或本機路徑，路徑規則見檔案開頭）
+  base_model: gpt2-medium
+  # 訓練資料目錄（命令列 --data_dir 會覆蓋）與檔案清單（相對於 data_dir）。
+  # markdown 會去掉 #、**、清單符號，保留大小寫與標點；JSON 內容會展開成文字行，物件裡的字串寫成
+  # "key: value"（例如 "AI: ..."）。原始檔案不會被修改。
+  data_dir: data
+  data_files:
+    - dialogue_data_proficiency.txt
+    - dialogue_data.txt
+    - personality_data.txt
+    - zora.txt
+  # 微調後的模型存放處，--generate 也從這裡載入（命令列 --model_save_path 會覆蓋）
+  model_save_path: saved_model
+  # Trainer 的 checkpoint、訓練曲線圖（PNG）與 training_metrics.json
+  output_dir: outputs
+  epochs: 10
+  learning_rate: 5.0e-5
+  # 前 10% 的步數做學習率 warmup，之後線性衰減到 0
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  # 有效 batch size = batch_size × gradient_accumulation_steps
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  # 每個訓練樣本的 token 數：所有文字串接後切成這個長度（不會超過模型的上下文長度）
+  block_size: 512
+  # 驗證集比例；每個 epoch 結束時評估並存檔，最後保留驗證 loss 最低的模型
+  validation_split: 0.1
+  logging_steps: 5
+  seed: 42
+  # 訓練紀錄要送到哪裡，例如 tensorboard；none 表示不送
+  report_to: none
