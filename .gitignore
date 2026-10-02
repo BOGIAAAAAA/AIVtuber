@@ -178,3 +178,10 @@ aiVtuber/logs/
 # 工具
 .ruff_cache/
 .DS_Store
+
+# ===== GPT-SoVITS（TTS server）=====
+# 上游原始碼與模型：由 aiVtuber/tts_server/setup_gpt_sovits.* clone 到這裡，不納入版控
+/aiVtuber/GPT-SoVITS/
+# api_v2.py 的設定：本機設定與執行期副本（範本 tts_infer.example.yaml 要納入版控）
+/aiVtuber/tts_server/tts_infer.yaml
+/aiVtuber/tts_server/runtime/

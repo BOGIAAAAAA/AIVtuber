@@ -1,0 +1,39 @@
+# GPT-SoVITS api_v2.py 設定範本（aiVtuber 用；v2ProPlus 零樣本）
+#
+# ■ 使用方式
+#   start_tts_server.* 第一次執行時會把本檔複製成同目錄的 tts_infer.yaml（已被 .gitignore 忽略），
+#   之後請改 tts_infer.yaml，不要改本範本。
+#   每次啟動時腳本會再把 tts_infer.yaml 複製到 runtime/tts_infer.yaml，用 -c 交給 api_v2.py。
+#   原因：api_v2.py 每次載入模型都會把設定「整份寫回」-c 指定的檔案（刪掉註解、補上 v1～v4 等
+#   預設區段；權重路徑不存在時，還會把退回的底模路徑寫回去），所以只讓它改副本。
+#
+# ■ 規則（依 GPT-SoVITS 48b1a01 的 GPT_SoVITS/TTS_infer_pack/TTS.py）
+#   - api_v2.py 只讀 custom 區段；其他版本區段可以省略（程式內建預設值）。
+#   - 相對路徑以 GPT-SoVITS 根目錄（server 的工作目錄）為基準，不是以本檔的位置為基準。
+#     放在別處的權重請寫絕對路徑（Windows 也可用正斜線，例如 D:/models/xxx.pth）。
+#   - 權重路徑不存在時 server 不會報錯，而是印出「fall back to default ...」改用該版本的底模；
+#     啟動後請確認 log 沒有這一行。
+custom:
+  # 必填：v1 / v2 / v2Pro / v2ProPlus / v3 / v4。只決定「路徑不存在時退回哪個底模」；
+  # 實際的模型版本由 SoVITS 權重檔自動判斷。
+  version: v2ProPlus
+  # - NVIDIA：cuda（多張卡可寫 cuda:1）。GTX 10／16 系列請設 is_half: false；顯存小於 4 GB 建議改 cpu
+  #   （上游 WebUI 的 config.py 對這些卡也是用 fp32／cpu）。
+  # - 沒有 NVIDIA 顯示卡（含 macOS）：請改成 device: cpu、is_half: false（上游推理程式不會使用 mps）。
+  #   48b1a01 偵測不到 CUDA 時會自動改用 cpu 並關掉 is_half，但 Windows 整合包（2025-06-04 的程式）
+  #   不會自動關掉 is_half，在 CPU 上推論會出錯，所以請明確寫出來。
+  device: cuda
+  is_half: true
+  # GPT（Text2Semantic）權重：v2Pro / v2ProPlus 的底模共用 s1v3.ckpt
+  t2s_weights_path: GPT_SoVITS/pretrained_models/s1v3.ckpt
+  # SoVITS 權重：v2ProPlus 底模（零樣本，音色來自每次請求帶的參考音檔）
+  vits_weights_path: GPT_SoVITS/pretrained_models/v2Pro/s2Gv2ProPlus.pth
+  # 以下兩個中文模型即使只合成英文也一定要有：BERT 在啟動時就會載入（非中文時特徵是零向量），
+  # HuBERT 用來從參考音檔抽特徵。
+  bert_base_path: GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
+  # 上游的鍵名就是 cnhuhbert（多一個 h），不要改成 cnhubert
+  cnhuhbert_base_path: GPT_SoVITS/pretrained_models/chinese-hubert-base
+
+# ■ 改用原作者的 v1 微調權重（firefly-e15.ckpt／firefly_e8_s200.pth，不在 repo 內）時：
+#   t2s_weights_path 與 vits_weights_path 要一起換成那一對（GPT 與 SoVITS 必須同一版本），
+#   server 會自動判斷成 v1 模型；這時就不是 v2ProPlus 了。
