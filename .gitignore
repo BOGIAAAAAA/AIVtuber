@@ -158,3 +158,23 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# ===== AIVtuber 專案 =====
+# 本機設定與憑證（請從 config.example.yaml 複製）
+aiVtuber/config.yaml
+pyvts_token.txt
+
+# 執行期產生的音檔
+aiVtuber/audio/tmp*.wav
+output.wav
+
+# 訓練輸出與模型存檔（舊版預設路徑 + 新版 outputs/）
+aiVtuber/vtvenv/
+aiVtuber/outputs/
+aiVtuber/saved_model/
+aiVtuber/results/
+aiVtuber/logs/
+
+# 工具
+.ruff_cache/
+.DS_Store
