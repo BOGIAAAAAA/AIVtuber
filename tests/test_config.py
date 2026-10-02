@@ -8,7 +8,7 @@ import pytest
 import yaml
 
 from vtuber import config as config_module
-from vtuber.config import AppConfig, load_config
+from vtuber.config import AppConfig, TrainingConfig, load_config
 from vtuber.errors import ConfigError
 
 
@@ -88,7 +88,7 @@ def test_relative_paths_resolve_against_base_dir_not_cwd(tmp_path, monkeypatch):
     elsewhere = tmp_path / "elsewhere"
     elsewhere.mkdir()
     monkeypatch.chdir(elsewhere)
-    base = tmp_path / "aiVtuber"
+    base = tmp_path / "project"
     path = _write(tmp_path / "c.yaml", "training:\n  model_save_path: models/zora\n  output_dir: /abs/outputs\n")
 
     config = load_config(path, base_dir=base)
@@ -204,6 +204,15 @@ def test_example_config_documents_every_setting_with_the_default_values(tmp_path
         else:
             assert item.name in raw
     assert load_config(example_path, base_dir=tmp_path) == load_config(base_dir=tmp_path)
+
+
+def test_base_dir_is_the_project_root_holding_the_default_files():
+    # 相對路徑的預設值以 BASE_DIR 為基準，要指到 repo 裡實際存在的檔案（參考音檔見 test_tts.py）
+    base = config_module.BASE_DIR
+    training = TrainingConfig()
+
+    assert (base / "pyproject.toml").is_file()
+    assert all((base / training.data_dir / name).is_file() for name in training.data_files)
 
 
 @pytest.mark.parametrize(
@@ -328,7 +337,7 @@ def test_model_settings_accept_hub_ids_and_local_paths_relative_to_base_dir(tmp_
     config = load_config(path, base_dir=tmp_path)
 
     assert config.training.base_model == str(tmp_path / "models" / "gpt2")  # ./ 開頭：本機路徑
-    assert config.sentiment.model == str(tmp_path / "my_models" / "sst2")  # aiVtuber/ 底下存在：本機路徑
+    assert config.sentiment.model == str(tmp_path / "my_models" / "sst2")  # base_dir 底下存在：本機路徑
 
 
 def test_hub_model_ids_are_left_untouched(tmp_path, monkeypatch):

@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import contextlib
 import logging
+import shutil
 import subprocess
 import sys
+import sysconfig
 import threading
 from pathlib import Path
 from typing import ClassVar
@@ -325,12 +327,13 @@ def test_python_dash_m_vtuber_runs(tmp_path):
     assert all(flag in result.stdout for flag in (*LEGACY_FLAGS, "--config", "--log-level"))
 
 
-def test_legacy_run_3_entry_point_works_from_any_directory(tmp_path):
-    result = subprocess.run(
-        [sys.executable, str(BASE_DIR / "run_3.py"), "--help"], cwd=tmp_path, capture_output=True, text=True, check=True
-    )
+def test_aivtuber_console_script_works_from_any_directory(tmp_path):
+    script = shutil.which("aivtuber", path=sysconfig.get_path("scripts"))
+    assert script, 'aivtuber is not installed in this environment; run pip install -e ".[dev]"'
 
-    assert result.stdout.startswith("usage: run_3.py")
+    result = subprocess.run([script, "--help"], cwd=tmp_path, capture_output=True, text=True, check=True)
+
+    assert result.stdout.startswith("usage: aivtuber")
     assert all(flag in result.stdout for flag in LEGACY_FLAGS)
 
 

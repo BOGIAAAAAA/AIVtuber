@@ -59,7 +59,7 @@ def test_v2_posts_every_field_to_tts_and_returns_the_wav(speech_wav):
     assert json.loads(request.content) == {
         "text": "Hello there!",
         "text_lang": "en",
-        # 相對路徑以 aiVtuber/ 為基準轉成絕對路徑（server 在同一台電腦）
+        # 相對路徑以專案根目錄為基準轉成絕對路徑（server 在同一台電腦）
         "ref_audio_path": str(BASE_DIR / "voices" / "firefly" / "ref_firefly_01.wav"),
         "prompt_text": "I understand. Article 4 of Glamoth military regulations.",
         "prompt_lang": "en",

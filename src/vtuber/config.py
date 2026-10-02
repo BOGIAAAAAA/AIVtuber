@@ -1,10 +1,10 @@
 """應用程式設定：以 dataclass 定義所有可調參數，並從 YAML 載入。
 
-- 設定檔預設為 aiVtuber/config.yaml；不存在時使用預設值。
-- 設定檔裡「本機」的相對路徑（型別為 Path 的欄位）一律以 aiVtuber/ 為基準解析，
+- 設定檔預設為專案根目錄的 config.yaml；不存在時使用預設值。
+- 設定檔裡「本機」的相對路徑（型別為 Path 的欄位）一律以專案根目錄為基準解析，
   所以不論從哪個目錄執行結果都一樣。
 - tts.ref_audio_path 是要送給 TTS server 的路徑，由 TTS client 在送出前處理（見 tts.resolve_ref_audio_path）：
-  相對路徑同樣以 aiVtuber/ 為基準轉成絕對路徑，絕對路徑則原樣送出。
+  相對路徑同樣以專案根目錄為基準轉成絕對路徑，絕對路徑則原樣送出。
 - API key 不放在設定檔：Groq SDK 會自行讀取環境變數 GROQ_API_KEY。
 """
 
@@ -25,7 +25,9 @@ from vtuber.errors import ConfigError
 
 logger = logging.getLogger(__name__)
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# 專案根目錄（src/vtuber/config.py 往上兩層）。設定檔、語音素材與訓練資料都在 repo 裡，
+# 所以套件要用 pip install -e . 從原始碼目錄安裝，不支援裝成一般的 wheel
+BASE_DIR = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = BASE_DIR / "config.yaml"
 
 DEVICES = ("auto", "cpu", "cuda", "mps")
@@ -61,7 +63,7 @@ def _expand_user(value: str, key: str) -> Path:
 
 
 def _model_ref(default: str) -> Any:
-    """模型欄位：可填 Hugging Face 模型 ID 或本機路徑；本機路徑以 aiVtuber/ 為基準（見 resolve_model_reference）。"""
+    """模型欄位：可填 Hugging Face 模型 ID 或本機路徑；本機路徑以專案根目錄為基準（見 resolve_model_reference）。"""
     return field(default=default, metadata={"model_ref": True})
 
 
@@ -107,7 +109,7 @@ class TTSConfig:
 
     engine: str = "gpt-sovits-v2"
     url: str = "http://127.0.0.1:9880"
-    # 參考音檔：相對路徑以 aiVtuber/ 為基準轉成絕對路徑後送出，絕對路徑原樣送出（server 在別台電腦時用）
+    # 參考音檔：相對路徑以專案根目錄為基準轉成絕對路徑後送出，絕對路徑原樣送出（server 在別台電腦時用）
     ref_audio_path: str = "voices/firefly/ref_firefly_01.wav"
     prompt_text: str = "I understand. Article 4 of Glamoth military regulations."
     prompt_lang: str = "en"
@@ -353,7 +355,7 @@ class AppConfig:
 def load_config(path: Optional[Path] = None, base_dir: Path = BASE_DIR) -> AppConfig:
     """讀取設定檔並回傳 AppConfig。
 
-    path 為 None 時讀預設的 aiVtuber/config.yaml，不存在就用預設值；
+    path 為 None 時讀專案根目錄的 config.yaml，不存在就用預設值；
     明確指定的檔案不存在則視為錯誤（避免打錯檔名卻默默用預設值）。
     """
     config_path = DEFAULT_CONFIG_PATH if path is None else Path(path).expanduser()

@@ -1,18 +1,18 @@
 # AI VTuber 設定範例
 #
-# 使用方式：複製成 aiVtuber/config.yaml 再修改（config.yaml 已被 .gitignore 忽略）。
+# 使用方式：在專案根目錄複製成 config.yaml 再修改（config.yaml 已被 .gitignore 忽略）。
 #   cp config.example.yaml config.yaml
 # 沒有 config.yaml 時程式會使用與本檔相同的預設值；只需寫出想改的項目即可。
-# 也可以用 `python -m vtuber --config 其他檔案.yaml` 指定別的設定檔。
+# 也可以用 `aivtuber --config 其他檔案.yaml` 指定別的設定檔。
 #
 # 路徑規則：本檔中「本機」的相對路徑（data_dir、model_save_path、output_dir、token_path）
-# 一律以 aiVtuber/ 目錄為基準，不論從哪個目錄執行都一樣。
+# 一律以專案根目錄（本檔所在的目錄）為基準，不論從哪個目錄執行都一樣。
 # 模型欄位（training.base_model、sentiment.model）可填 Hugging Face 模型 ID 或本機路徑：
-# 以 ./ 或 ../ 開頭、絕對路徑，或 aiVtuber/ 底下確實存在的路徑視為本機路徑（同樣以 aiVtuber/ 為基準），其餘視為模型 ID。
-# tts.ref_audio_path 是要送給 TTS server 讀取的路徑：相對路徑同樣以 aiVtuber/ 為基準，轉成絕對路徑後送出；
+# 以 ./ 或 ../ 開頭、絕對路徑，或專案根目錄底下確實存在的路徑視為本機路徑（同樣以專案根目錄為基準），其餘視為模型 ID。
+# tts.ref_audio_path 是要送給 TTS server 讀取的路徑：相對路徑同樣以專案根目錄為基準，轉成絕對路徑後送出；
 # 絕對路徑原樣送出（TTS server 在別台電腦時，請填那台電腦上的絕對路徑）。
 #
-# API key 不寫在這裡：請設定環境變數 GROQ_API_KEY（或寫在 aiVtuber/.env）。
+# API key 不寫在這裡：請設定環境變數 GROQ_API_KEY（或寫在專案根目錄的 .env）。
 
 # 推論與訓練裝置（--generate / --classify / --train）：auto 依序選 cuda > mps > cpu；
 # 也可指定 cpu / cuda / mps，指定的裝置不存在時會直接報錯（結束碼 2），不會默默改用其他裝置
@@ -53,7 +53,7 @@ tts:
   # （例如 http://192.168.1.106:9880），並讓 server 以 TTS_HOST=0.0.0.0 啟動（見 tts_server/README.md）
   url: http://127.0.0.1:9880
   # 參考音檔（3–10 秒、只有一個人說話），決定角色的音色。由 server 讀取：
-  # - 相對路徑以 aiVtuber/ 為基準，轉成這台電腦上的絕對路徑後送出（server 在同一台電腦時用這種寫法）
+  # - 相對路徑以專案根目錄為基準，轉成這台電腦上的絕對路徑後送出（server 在同一台電腦時用這種寫法）
   # - 絕對路徑原樣送出：server 在別台電腦時，請填「那台電腦上」的絕對路徑（Windows 也可寫成 D:/voices/ref.wav）
   # server 在同一台電腦而這個檔案不存在時，啟動時會發出警告。
   # gpt-sovits-v2 一定要填；gpt-sovits-v1 留空字串則改用 server 以 -dr / -dt / -dl 指定的預設參考音檔

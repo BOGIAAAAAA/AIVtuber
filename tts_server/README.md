@@ -1,8 +1,8 @@
 # TTS server（GPT-SoVITS api_v2）
 
-aiVtuber 的語音由另一個程序合成：[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) 的 `api_v2.py`，主程式用 HTTP 呼叫它（預設 `http://127.0.0.1:9880`）。
+AIVtuber 的語音由另一個程序合成：[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) 的 `api_v2.py`，主程式用 HTTP 呼叫它（預設 `http://127.0.0.1:9880`）。
 
-- GPT-SoVITS 不放在這個 repo 裡。setup 腳本會把上游 clone 到 `aiVtuber/GPT-SoVITS`（已加入 .gitignore），並鎖定在 commit [`48b1a01`](https://github.com/RVC-Boss/GPT-SoVITS/commit/48b1a0169a28582a8984402f82cf438d3bfa6aca)（2026-08-18）。
+- GPT-SoVITS 不放在這個 repo 裡。setup 腳本會把上游 clone 到 repo 根目錄的 `GPT-SoVITS/`（已加入 .gitignore），並鎖定在 commit [`48b1a01`](https://github.com/RVC-Boss/GPT-SoVITS/commit/48b1a0169a28582a8984402f82cf438d3bfa6aca)（2026-08-18）。
 - 預設使用 v2ProPlus 底模做零樣本合成：不需要訓練，音色來自每次請求帶的參考音檔。
 
 | 檔案 | 用途 |
@@ -33,7 +33,7 @@ aiVtuber 的語音由另一個程序合成：[GPT-SoVITS](https://github.com/RVC
 ```powershell
 conda create -n GPTSoVits python=3.10 -y
 conda activate GPTSoVits
-pwsh -ExecutionPolicy Bypass -File aiVtuber\tts_server\setup_gpt_sovits.ps1 -Device CU128
+pwsh -ExecutionPolicy Bypass -File tts_server\setup_gpt_sovits.ps1 -Device CU128
 ```
 
 `-Device` 的選法：NVIDIA 顯示卡用 `CU128`（顯示卡驅動較舊時改用 `CU126`），沒有 NVIDIA 顯示卡用 `CPU`。
@@ -47,13 +47,13 @@ pwsh -ExecutionPolicy Bypass -File aiVtuber\tts_server\setup_gpt_sovits.ps1 -Dev
 ```bash
 conda create -n GPTSoVits python=3.10 -y
 conda activate GPTSoVits
-bash aiVtuber/tts_server/setup_gpt_sovits.sh --device CU128   # Linux + NVIDIA（也可以用 CU126、ROCM、CPU）
-bash aiVtuber/tts_server/setup_gpt_sovits.sh --device MPS     # macOS（會安裝 CPU 版 PyTorch，推論只用 CPU）
+bash tts_server/setup_gpt_sovits.sh --device CU128   # Linux + NVIDIA（也可以用 CU126、ROCM、CPU）
+bash tts_server/setup_gpt_sovits.sh --device MPS     # macOS（會安裝 CPU 版 PyTorch，推論只用 CPU）
 ```
 
 ### setup 腳本做的事
 
-1. 把上游 clone 到 `aiVtuber/GPT-SoVITS`（可以用環境變數 `GPT_SOVITS_DIR` 改位置），並切換到 48b1a01。
+1. 把上游 clone 到 repo 根目錄的 `GPT-SoVITS/`（可以用環境變數 `GPT_SOVITS_DIR` 改位置），並切換到 48b1a01。
 2. 只下載 v2ProPlus 推論需要的模型（約 1.3 GB，見第 2 節）。這樣上游安裝腳本會跳過 4.6 GB 的完整模型包。
 3. 執行上游的 `install.sh`／`install.ps1`：安裝 FFmpeg、PyTorch、Python 套件，並下載 G2PW 中文模型（約 590 MB）、NLTK 資料和日文辭典。
 
@@ -84,9 +84,9 @@ setup 腳本會從 Hugging Face 的 [`lj1995/GPT-SoVITS`](https://huggingface.co
 - **macOS／Linux**：
   ```bash
   conda activate GPTSoVits
-  bash aiVtuber/tts_server/start_tts_server.sh
+  bash tts_server/start_tts_server.sh
   ```
-- **Windows**：點兩下 `aiVtuber\tts_server\start_tts_server.bat`。
+- **Windows**：點兩下 `tts_server\start_tts_server.bat`。
   - 整合包：照第 1 節設定好 `GPT_SOVITS_DIR` 就可以直接用。
   - conda：要在已經執行過 `conda activate GPTSoVits` 的視窗裡執行它。若想直接點兩下，可以用 `GPT_SOVITS_PYTHON` 指向該環境的 `python.exe`（例如 `%USERPROFILE%\miniforge3\envs\GPTSoVits\python.exe`）。
 
@@ -94,7 +94,7 @@ setup 腳本會從 Hugging Face 的 [`lj1995/GPT-SoVITS`](https://huggingface.co
 
 | 環境變數 | `.bat`／`.ps1` 參數 | 預設值 | 說明 |
 |---|---|---|---|
-| `GPT_SOVITS_DIR` | `-GsvDir` | `aiVtuber/GPT-SoVITS` | GPT-SoVITS 所在的目錄 |
+| `GPT_SOVITS_DIR` | `-GsvDir` | repo 根目錄的 `GPT-SoVITS/` | GPT-SoVITS 所在的目錄 |
 | `GPT_SOVITS_PYTHON` | `-Python` | 自動選擇 | 要使用的 Python |
 | `TTS_HOST` | `-BindHost` | `127.0.0.1` | 監聽位址；設成 `0.0.0.0` 就能從區網連線 |
 | `TTS_PORT` | `-Port` | `9880` | 連接埠 |
@@ -119,11 +119,11 @@ curl -X POST http://127.0.0.1:9880/tts -H "Content-Type: application/json" -o te
   "prompt_text": "I understand. Article 4 of Glamoth military regulations.", "prompt_lang": "en"}'
 ```
 
-成功時回傳 WAV（HTTP 200）；參數錯誤時回傳 HTTP 400 和 JSON 錯誤訊息。主程式的連線設定請見 `aiVtuber/config.example.yaml` 的 `tts` 區段。
+成功時回傳 WAV（HTTP 200）；參數錯誤時回傳 HTTP 400 和 JSON 錯誤訊息。主程式的連線設定請見 repo 根目錄 `config.example.yaml` 的 `tts` 區段。
 
 ## 4. 參考音檔
 
-預設使用 [`aiVtuber/voices/firefly/ref_firefly_01.wav`](../voices/firefly/ref_firefly_01.wav)（5.09 秒，切法見 [`voices/README.md`](../voices/README.md)），搭配：
+預設使用 [`voices/firefly/ref_firefly_01.wav`](../voices/firefly/ref_firefly_01.wav)（5.09 秒，切法見 [`voices/README.md`](../voices/README.md)），搭配：
 
 - `prompt_text`：`I understand. Article 4 of Glamoth military regulations.`
 - `prompt_lang`：`en`
@@ -132,7 +132,7 @@ curl -X POST http://127.0.0.1:9880/tts -H "Content-Type: application/json" -o te
 - 長度必須在 **3–10 秒**之間，否則 api_v2 會回傳 400。
 - `prompt_text` 必須和音檔內容逐字相符，頭尾也不能多出別的字，否則合成結果的開頭容易出現多餘的聲音。
 - 參考音檔是由 server 讀取的。**直接呼叫 API**（例如上面的 curl）時，相對路徑以 GPT-SoVITS 目錄（server 的工作目錄）為基準：上例的 `../voices/...` 只有 GPT-SoVITS 放在預設位置時才正確，其他情況請寫絕對路徑。server 在另一台電腦上時，要寫那台電腦上的路徑。
-- **主程式**的 `tts.ref_audio_path` 規則不同：相對路徑以 `aiVtuber/` 為基準，由主程式轉成絕對路徑後才送給 server（預設值 `voices/firefly/ref_firefly_01.wav` 就是這樣）；絕對路徑則原樣送出。server 在另一台電腦上時，同樣要寫那台電腦上的絕對路徑。詳見 `aiVtuber/config.example.yaml` 的 `tts` 區段。
+- **主程式**的 `tts.ref_audio_path` 規則不同：相對路徑以專案根目錄（repo 根目錄）為基準，由主程式轉成絕對路徑後才送給 server（預設值 `voices/firefly/ref_firefly_01.wav` 就是這樣）；絕對路徑則原樣送出。server 在另一台電腦上時，同樣要寫那台電腦上的絕對路徑。詳見 `config.example.yaml` 的 `tts` 區段。
 - 自己準備參考音檔時，請選只有一個人說話、背景音樂和雜音越少越好的 3–10 秒片段，存成 WAV。
 
 ## 5. 疑難排解
@@ -153,4 +153,4 @@ curl -X POST http://127.0.0.1:9880/tts -H "Content-Type: application/json" -o te
 ## 6. 版權與授權
 
 - **GPT-SoVITS**（48b1a01）採用 MIT 授權，Copyright (c) 2024 RVC-Boss，全文見 [`LICENSE-GPT-SoVITS`](LICENSE-GPT-SoVITS)（就是舊版 repo 內附 GPT-SoVITS 副本裡的那份 LICENSE）。它的原始碼不在這個 repo 裡，由 setup 腳本另外下載。Hugging Face 上的模型庫 `lj1995/GPT-SoVITS` 和 Windows 整合包 `lj1995/GPT-SoVITS-windows-package` 也都標示為 MIT。
-- **流螢語音素材**（`aiVtuber/voices/`）擷取自遊戲《崩壞：星穹鐵道》的官方影片，版權屬於遊戲的版權方。公開直播、營利或散布用它合成的語音之前，請先自行評估授權風險。詳見 [`voices/README.md`](../voices/README.md)。
+- **流螢語音素材**（`voices/`）擷取自遊戲《崩壞：星穹鐵道》的官方影片，版權屬於遊戲的版權方。公開直播、營利或散布用它合成的語音之前，請先自行評估授權風險。詳見 [`voices/README.md`](../voices/README.md)。

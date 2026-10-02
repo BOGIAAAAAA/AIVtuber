@@ -58,7 +58,7 @@ def resolve_ref_audio_path(path: str, base_dir: Path = BASE_DIR) -> str:
     """決定要送給 server 的參考音檔路徑。
 
     絕對路徑原樣送出（POSIX 或 Windows 寫法都算，因為 server 可能在另一種作業系統上）；
-    相對路徑（含 ~ 開頭）以 base_dir（aiVtuber/）為基準轉成這台電腦上的絕對路徑。
+    相對路徑（含 ~ 開頭）以 base_dir（專案根目錄）為基準轉成這台電腦上的絕對路徑。
     """
     if _is_absolute_anywhere(path):
         return path

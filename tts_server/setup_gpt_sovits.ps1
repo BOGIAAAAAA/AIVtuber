@@ -1,4 +1,4 @@
-# Install GPT-SoVITS for aiVtuber at the pinned upstream commit (Windows, conda route).
+# Install GPT-SoVITS for AIVtuber at the pinned upstream commit (Windows, conda route).
 # Users of the official Windows package (GPT-SoVITS-v2pro-*.7z) do not need this script:
 # extract the package and point start_tts_server.bat at it (-GsvDir or GPT_SOVITS_DIR).
 #
@@ -6,12 +6,12 @@
 #   conda create -n GPTSoVits python=3.10 -y
 #   conda activate GPTSoVits
 # Usage (PowerShell 7 is what the upstream README uses):
-#   pwsh -ExecutionPolicy Bypass -File aiVtuber\tts_server\setup_gpt_sovits.ps1 -Device CU128 [-Source HF] [-FullModels] [-SkipInstall]
+#   pwsh -ExecutionPolicy Bypass -File tts_server\setup_gpt_sovits.ps1 -Device CU128 [-Source HF] [-FullModels] [-SkipInstall]
 #     -Device       CU126 | CU128 | CPU, passed to upstream install.ps1
 #     -Source       HF | HF-Mirror | ModelScope (default HF)
 #     -FullModels   let install.ps1 download all pretrained models (pretrained_models.zip, about 4.6 GB)
 #     -SkipInstall  only clone/check out and download models; do not run install.ps1
-# Environment: GPT_SOVITS_DIR (default aiVtuber\GPT-SoVITS), GPT_SOVITS_COMMIT, GPT_SOVITS_REPO_URL, HF_ENDPOINT
+# Environment: GPT_SOVITS_DIR (default GPT-SoVITS in the repository root), GPT_SOVITS_COMMIT, GPT_SOVITS_REPO_URL, HF_ENDPOINT
 # This file is ASCII on purpose: Windows PowerShell 5.1 misreads UTF-8 scripts that have no BOM.
 param(
     [ValidateSet("CU126", "CU128", "CPU")][string]$Device,
@@ -89,4 +89,4 @@ if (-not $SkipInstall) {
 }
 
 Write-Host "[SUCCESS] GPT-SoVITS $GsvCommit is ready at $GsvDir"
-Write-Host "          Start the server with aiVtuber\tts_server\start_tts_server.bat"
+Write-Host "          Start the server with tts_server\start_tts_server.bat"

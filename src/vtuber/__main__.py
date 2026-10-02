@@ -1,4 +1,4 @@
-"""讓 `python -m vtuber` 可以執行（請在 aiVtuber/ 目錄下執行）。"""
+"""讓 `python -m vtuber` 可以執行（與安裝後的 `aivtuber` 指令相同）。"""
 
 from vtuber.cli import main
 

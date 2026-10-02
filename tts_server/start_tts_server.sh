@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Start the GPT-SoVITS api_v2.py TTS server for aiVtuber (macOS / Linux).
+# Start the GPT-SoVITS api_v2.py TTS server for AIVtuber (macOS / Linux).
 #
 # Usage:
-#   bash aiVtuber/tts_server/start_tts_server.sh
+#   bash tts_server/start_tts_server.sh
 #
 # Environment variables (all optional):
-#   GPT_SOVITS_DIR        GPT-SoVITS root (default: aiVtuber/GPT-SoVITS, created by setup_gpt_sovits.sh)
+#   GPT_SOVITS_DIR        GPT-SoVITS root (default: GPT-SoVITS in the repository root, created by setup_gpt_sovits.sh)
 #   GPT_SOVITS_PYTHON     Python of the GPT-SoVITS environment (default: python of the active conda env
 #                         $GPT_SOVITS_CONDA_ENV, else "conda run -n $GPT_SOVITS_CONDA_ENV python", else python)
 #   GPT_SOVITS_CONDA_ENV  conda env name (default: GPTSoVits, as in the upstream README)

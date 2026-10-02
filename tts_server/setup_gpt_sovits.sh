@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-# Install GPT-SoVITS for aiVtuber at the pinned upstream commit (macOS / Linux).
+# Install GPT-SoVITS for AIVtuber at the pinned upstream commit (macOS / Linux).
 #
 # Prerequisites: git, curl, conda (Miniforge recommended) and an activated env:
 #   conda create -n GPTSoVits python=3.10 -y && conda activate GPTSoVits
 # Usage:
-#   bash aiVtuber/tts_server/setup_gpt_sovits.sh --device CU128|CU126|ROCM|MPS|CPU [--source HF|HF-Mirror|ModelScope] [--full-models] [--skip-install]
+#   bash tts_server/setup_gpt_sovits.sh --device CU128|CU126|ROCM|MPS|CPU [--source HF|HF-Mirror|ModelScope] [--full-models] [--skip-install]
 #     --device        passed to upstream install.sh (MPS installs the CPU wheel; inference runs on CPU)
 #     --source        download source (default: HF)
 #     --full-models   let install.sh download all pretrained models (pretrained_models.zip, about 4.6 GB)
 #                     instead of the about 1.3 GB needed for v2ProPlus inference
 #     --skip-install  only clone/check out and download models; do not run install.sh
-# Environment: GPT_SOVITS_DIR (default: aiVtuber/GPT-SoVITS), GPT_SOVITS_COMMIT, GPT_SOVITS_REPO_URL, HF_ENDPOINT
+# Environment: GPT_SOVITS_DIR (default: GPT-SoVITS in the repository root), GPT_SOVITS_COMMIT, GPT_SOVITS_REPO_URL, HF_ENDPOINT
 set -euo pipefail
 
 GSV_COMMIT="${GPT_SOVITS_COMMIT:-48b1a0169a28582a8984402f82cf438d3bfa6aca}"  # RVC-Boss/GPT-SoVITS main, 2026-08-18

@@ -1,4 +1,4 @@
-"""命令列入口：保留 run_3.py 的所有參數與語意，另外新增 --config 與 --log-level。
+"""命令列入口（`aivtuber` / `python -m vtuber`）：保留舊版 run_3.py 的所有參數與語意，另外新增 --config 與 --log-level。
 
 模式優先順序與舊版相同：--train > --generate > --classify > 聊天（沒給任何模式旗標時也是聊天）。
 --api / --vts_control 會連上 VTube Studio，供聊天模式與 --classify 使用。
@@ -25,7 +25,7 @@ LOG_LEVELS = ("DEBUG", "INFO", "WARNING", "ERROR")
 
 
 def build_parser(prog: Optional[str] = None) -> argparse.ArgumentParser:
-    """prog 為 None 時由 argparse 依執行的檔名決定（例如 run_3.py）。"""
+    """prog 為 None 時由 argparse 依執行的檔名決定（例如 aivtuber）。"""
     parser = argparse.ArgumentParser(
         prog=prog,
         description="AI VTuber: voice chat (speech recognition -> Groq LLM -> GPT-SoVITS TTS), "
@@ -66,7 +66,10 @@ def build_parser(prog: Optional[str] = None) -> argparse.ArgumentParser:
         "(default: training.model_save_path = saved_model).",
     )
     parser.add_argument(
-        "--config", type=Path, default=None, help="YAML config file (default: aiVtuber/config.yaml if it exists)."
+        "--config",
+        type=Path,
+        default=None,
+        help="YAML config file (default: config.yaml in the project root, if it exists).",
     )
     parser.add_argument(
         "--log-level", type=str.upper, default="INFO", choices=LOG_LEVELS, help="Logging level (default: INFO)."
@@ -108,7 +111,7 @@ def configure_logging(level: str) -> None:
 
 
 def load_dotenv_file(path: Path = BASE_DIR / ".env") -> None:
-    """有安裝 python-dotenv 且 aiVtuber/.env 存在時載入（不覆蓋已存在的環境變數）。"""
+    """有安裝 python-dotenv 且專案根目錄的 .env 存在時載入（不覆蓋已存在的環境變數）。"""
     try:
         from dotenv import load_dotenv
     except ImportError:
@@ -145,8 +148,8 @@ def main(argv: Optional[Sequence[str]] = None, *, prog: Optional[str] = None) ->
         return 1
     except ImportError as exc:
         logger.error(
-            "Missing dependency: %s. Install requirements.txt for voice chat and "
-            "requirements-train.txt for --train / --generate / --classify.",
+            'Missing dependency: %s. Install the extras: pip install -e ".[chat]" for voice chat, '
+            'pip install -e ".[train]" for --train / --generate / --classify.',
             exc,
         )
         return 1
@@ -201,7 +204,7 @@ def _print_result(title: str, result: object) -> None:
     if isinstance(result, VTuberError):
         print(f"(failed: {result})\n", flush=True)
     elif isinstance(result, ImportError):
-        print(f"(failed: {result}; install requirements-train.txt)\n", flush=True)
+        print(f'(failed: {result}; install the train extra: pip install -e ".[train]")\n', flush=True)
     elif isinstance(result, BaseException):
         logger.error("%s failed", title, exc_info=result)
         print(f"(failed: {type(result).__name__}: {result})\n", flush=True)

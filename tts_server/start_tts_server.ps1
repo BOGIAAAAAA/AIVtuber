@@ -1,4 +1,4 @@
-# Start the GPT-SoVITS api_v2.py TTS server for aiVtuber (Windows).
+# Start the GPT-SoVITS api_v2.py TTS server for AIVtuber (Windows).
 #
 # Usage: double-click start_tts_server.bat, or in PowerShell:
 #   .\start_tts_server.ps1 [-GsvDir D:\GPT-SoVITS-v2pro-20250604] [-BindHost 127.0.0.1] [-Port 9880] [-Python C:\path\to\python.exe]

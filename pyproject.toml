@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aivtuber"
+version = "0.1.0"
+description = "AI VTuber: voice chat (speech recognition -> Groq LLM -> GPT-SoVITS TTS), GPT-2 fine-tuning and VTube Studio expressions"
+readme = "README.md"
+requires-python = ">=3.9"
+# 所有模式都需要的套件；各模式另外需要的套件見下方 optional-dependencies
+dependencies = [
+    "groq>=0.31.0",        # AsyncGroq；0.31 起支援 gpt-oss 的 reasoning_effort（low/medium/high）與 include_reasoning
+    "httpx>=0.24",         # GPT-SoVITS HTTP 客戶端（groq SDK 本身也依賴 httpx）
+    "PyYAML>=6.0",         # config.yaml
+    "python-dotenv>=1.0",  # 選用：從專案根目錄的 .env 讀 GROQ_API_KEY
+]
+
+[project.optional-dependencies]
+# 語音聊天（預設模式 / --api）：pip install -e ".[chat]"
+# PyAudio 需要系統的 PortAudio：macOS 先 `brew install portaudio`，Debian/Ubuntu 先 `apt install portaudio19-dev`；
+# Windows 直接 pip 安裝即可（有預編譯 wheel）。
+chat = [
+    "SpeechRecognition>=3.10",  # 麥克風錄音 + Google 語音辨識
+    "PyAudio>=0.2.11",          # 麥克風與播放
+    "pyvts>=0.3.3",             # VTube Studio API（--api / --vts_control）；0.3.3 起可指定 host
+]
+# --train / --generate / --classify：pip install -e ".[train]"（不含 PyAudio，可單獨安裝在訓練機上）
+# torch 請依平台安裝合適的版本（CUDA / CPU / Apple Silicon），見 https://pytorch.org/get-started/locally/
+# 搭配 --api 切換 VTube Studio 表情時，另需 chat 裡的 pyvts（pip install -e ".[chat,train]"）。
+train = [
+    "torch>=2.1",
+    "transformers>=4.41",  # 4.41 起有 eval_strategy（舊名 evaluation_strategy 已在 4.51 移除）
+    "datasets>=2.15",      # Dataset.from_dict / train_test_split（取代 pandas + scikit-learn）
+    "accelerate>=0.26",    # Trainer 需要
+    "matplotlib>=3.5",     # 訓練曲線存成 PNG（Agg backend）
+]
+# 測試與靜態檢查（不需要 torch、麥克風、GPU 或網路）：pip install -e ".[dev]"
+dev = [
+    "pytest>=7.0",
+    "pytest-timeout>=2.1",      # 下方 [tool.pytest.ini_options] 設定每個測試最多 30 秒
+    "ruff",
+    "SpeechRecognition>=3.10",  # vtuber.asr 在 import 時就需要
+]
+
+[project.scripts]
+aivtuber = "vtuber.cli:main"
+
+[tool.pytest.ini_options]
+# 測試的是安裝好的套件（src layout）：請先 pip install -e ".[dev]"
+testpaths = ["tests"]
+addopts = "-ra"
+# 每個測試最多 30 秒（需要 pytest-timeout）：實作出錯時測試會失敗，而不是整個卡住
+timeout = 30
+
+[tool.ruff]
+# 目標 Python 版本由 [project] 的 requires-python 決定
+line-length = 120
+# GPT-SoVITS 是 tts_server/setup_gpt_sovits.* 從上游 clone 下來的外部程式碼（已被 .gitignore 忽略），不做檢查
+extend-exclude = ["GPT-SoVITS"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = [
+    "RUF001", "RUF002", "RUF003",  # 中文註解與字串中的全形標點是刻意的
+]
+
+[tool.ruff.lint.pyupgrade]
+# config.py 在執行期用 typing.get_type_hints() 解析欄位型別，Python 3.9 不能用 X | None
+keep-runtime-typing = true
+
+[tool.ruff.lint.isort]
+known-first-party = ["vtuber"]

@@ -161,27 +161,20 @@ cython_debug/
 
 # ===== AIVtuber 專案 =====
 # 本機設定與憑證（請從 config.example.yaml 複製）
-aiVtuber/config.yaml
+/config.yaml
 pyvts_token.txt
 
-# 執行期產生的音檔
-aiVtuber/audio/tmp*.wav
-output.wav
-
-# 訓練輸出與模型存檔（舊版預設路徑 + 新版 outputs/）
-aiVtuber/vtvenv/
-aiVtuber/outputs/
-aiVtuber/saved_model/
-aiVtuber/results/
-aiVtuber/logs/
+# 訓練輸出與模型存檔
+/outputs/
+/saved_model/
 
 # 工具
 .ruff_cache/
 .DS_Store
 
 # ===== GPT-SoVITS（TTS server）=====
-# 上游原始碼與模型：由 aiVtuber/tts_server/setup_gpt_sovits.* clone 到這裡，不納入版控
-/aiVtuber/GPT-SoVITS/
+# 上游原始碼與模型：由 tts_server/setup_gpt_sovits.* clone 到這裡，不納入版控
+/GPT-SoVITS/
 # api_v2.py 的設定：本機設定與執行期副本（範本 tts_infer.example.yaml 要納入版控）
-/aiVtuber/tts_server/tts_infer.yaml
-/aiVtuber/tts_server/runtime/
+/tts_server/tts_infer.yaml
+/tts_server/runtime/

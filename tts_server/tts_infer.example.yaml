@@ -1,4 +1,4 @@
-# GPT-SoVITS api_v2.py 設定範本（aiVtuber 用；v2ProPlus 零樣本）
+# GPT-SoVITS api_v2.py 設定範本（AIVtuber 用；v2ProPlus 零樣本）
 #
 # ■ 使用方式
 #   start_tts_server.* 第一次執行時會把本檔複製成同目錄的 tts_infer.yaml（已被 .gitignore 忽略），
